@@ -1,5 +1,8 @@
-// TODO(lukem): replace with permanent URL
 var PERMANENT_URL_PREFIX = 'http://io-2011-slides.googlecode.com/svn/trunk/io2011/';
+
+// Make dev easier
+//var PERMANENT_URL_PREFIX = 'io2011/';
+
 
 var curSlide;
 
@@ -61,6 +64,37 @@ function updateSlideClasses() {
   updateHash();
 }
 
+/*
+function showFrames: function() {
+  var frames = queryAll('iframe', this._node);
+      function show() {
+        frames.forEach(function(el) {
+          var _src = el.getAttribute('_src');
+          if (_src && _src.length) {
+            el.src = _src;
+          }
+        });
+      }
+      setTimeout(show, 0);
+    }
+}*/
+
+/*function hideFrames() {
+    _hideFrames: function() {
+      var frames = queryAll('iframe', this._node);
+      function hide() {
+        frames.forEach(function(el) {
+          var _src = el.getAttribute('_src');
+          if (_src && _src.length) {
+            el.src = '';
+          }
+        });
+      }
+      setTimeout(hide, 250);
+    },
+    
+}*/
+
 function prevSlide() {
   if (curSlide > 0) {
     curSlide--;
@@ -95,11 +129,26 @@ function addGeneralStyle() {
   document.body.appendChild(el);
 }
 
+function addIOLogos() {
+  var slides = document.getElementsByTagName('article');
+  for (var i = 0, slide; slide = slides[i]; i++) {
+    if (slide.className.indexOf('biglogo') != -1) {
+      continue;
+    }
+
+    var segue = slide.className.indexOf('segue') != -1;
+    var logo = document.createElement('DIV');
+    logo.className = 'small-logo';
+    slide.appendChild(logo);
+  }
+}
+
 function handleDomLoaded() {
   slideEls = document.querySelectorAll('section.slides > article');
 
   addFontStyle();
   addGeneralStyle();
+  addIOLogos();
 
   document.body.classList.add('loaded');
 
