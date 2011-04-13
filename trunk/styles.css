@@ -301,6 +301,7 @@ img.centered {
 }
 
 table {
+  width: 100%;
   border-collapse: collapse;
   margin-top: 40px;
 }
