@@ -37,7 +37,7 @@ function getCurSlideFromHash() {
   if (slideNo) {
     curSlide = slideNo - 1;
   } else {
-    curSlide = 1;
+    curSlide = 0;
   }
 }
 
