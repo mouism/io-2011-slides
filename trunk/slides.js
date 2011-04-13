@@ -7,8 +7,7 @@
   URL: http://go/io-html-slides
 */
 
-// TODO(lukem): replace with permanent URL
-var PERMANENT_URL_PREFIX = 'io2011/';
+var PERMANENT_URL_PREFIX = 'http://io-2011-slides.googlecode.com/svn/trunk/';
 
 var curSlide;
 
