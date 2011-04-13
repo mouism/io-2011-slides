@@ -1,16 +1,16 @@
 /* Framework */
 
 html {
-  height: 100%;  
+  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  
-  height: 100%; 
+
+  height: 100%;
   overflow: hidden;
-    
+
   background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
 
   -webkit-font-smoothing: antialiased;
@@ -18,49 +18,49 @@ body {
 
 .slides {
   opacity: 0;
-  
+
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  
+
   position: absolute;
-  
-  -webkit-transform: translateZ(0);  
+
+  -webkit-transform: translateZ(0);
 }
 
 body.loaded .slides {
   -webkit-transition: opacity 1s;
-  
+
   opacity: 1;
 }
 
 .slides > article {
   display: block;
-  
+
   position: absolute;
   overflow: hidden;
-  
+
   width: 900px;
   height: 700px;
-  
+
   left: 50%;
   top: 50%;
-  
+
   margin-left: -450px;
   margin-top: -350px;
-  
+
   padding: 40px 60px;
-  
+
   box-sizing: border-box;
-  
+
   border-radius: 11px;
-  
+
   background: white url(images/colorbar.png) 0 600px repeat-x;
 
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);
   border: 1px solid rgba(0, 0, 0, .2);
-  
+
   -webkit-transition: -webkit-transform .3s;
 }
 
@@ -68,8 +68,19 @@ body.loaded .slides {
 
 article.biglogo {
   background: white url(images/googleio-logo.png) 50% 50% no-repeat;
-  
+
   background-size: 600px;
+}
+
+.small-logo {
+  background: white url(images/googleio-logo.png) 50% 50% no-repeat;
+  background-size: 225px;
+  z-index: 100;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 225px;
+  height: 64px;
 }
 
 /* Slides */
@@ -105,8 +116,8 @@ article.biglogo {
 
   color: rgb(102, 102, 102);
   text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-  
-  font-size: 30px;  
+
+  font-size: 30px;
 
   letter-spacing: -1px;
 }
@@ -114,45 +125,45 @@ article.biglogo {
 h1 {
   font-size: 60px;
   line-height: 60px;
-  
+
   padding: 0;
   margin: 0;
-  
+
   font-weight: 500;
-  
+
   letter-spacing: -3px;
-  
+
   color: rgb(51, 51, 51);
 }
 
 h2 {
   font-size: 45px;
   line-height: 45px;
-  
+
   position: absolute;
   bottom: 150px;
-  
+
   padding: 0;
   margin: 0;
-  
+
   font-weight: 500;
-  
+
   letter-spacing: -2px;
-  
+
   color: rgb(51, 51, 51);
 }
 
 h3 {
   font-size: 30px;
   line-height: 30px;
-  
+
   padding: 0;
   margin: 0;
 
   font-weight: 500;
-    
+
   letter-spacing: -1px;
-  
+
   color: rgb(51, 51, 51);
 }
 
@@ -160,9 +171,9 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  
+
   margin-top: 2em;
-  
+
   margin-left: .75em;
 }
 li {
@@ -173,7 +184,7 @@ li {
 }
 li::before {
   content: '·';
-  
+
   width: .75em;
   margin-left: -.75em;
 
