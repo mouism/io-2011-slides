@@ -17,6 +17,7 @@ function handleBodyKeyDown(event) {
     case 40: // down arrow
     case 13: // Enter
     case 32: // space
+    case 34: // PgDn
       nextSlide();
       event.preventDefault();
       break;
@@ -24,6 +25,7 @@ function handleBodyKeyDown(event) {
     case 37: // left arrow
     case 38: // top arrow
     case 8: // Backspace
+    case 33: // PgUp
       prevSlide();
       event.preventDefault();
       break;
