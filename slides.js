@@ -96,8 +96,6 @@ function addFontStyle() {
   el.href = 'http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono';
   
   document.body.appendChild(el);   
-  
-  var el = document.createElement('link');
 }
 
 function addGeneralStyle() {
