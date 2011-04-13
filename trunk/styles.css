@@ -1,0 +1,363 @@
+/*
+  Google I/O 2011 HTML slides template
+
+  Created by Luke Maké (lukem@google.com) 
+         and Marcin Wichary (mwichary@google.com).
+ 
+  URL: http://go/io-html-slides
+*/
+
+/* Framework */
+
+html {
+  height: 100%;  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  
+  display: block !important;
+  
+  height: 100%; 
+  overflow: hidden;
+    
+  background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.slides {
+  opacity: 0;
+  
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  
+  position: absolute;
+  
+  -webkit-transform: translateZ(0);  
+}
+
+.slides::before {
+  width: 100%;
+
+  top: 50%;
+  margin-top: -350px;
+  height: 700px;
+
+  opacity: .2;
+
+  position: absolute;
+  content: '';
+  background: url(images/colorbar.png) 0 600px repeat-x;  
+}
+
+body.loaded .slides {
+  -webkit-transition: opacity 1s;
+  
+  opacity: 1;
+}
+
+.slides > article {
+  display: block;
+  
+  position: absolute;
+  overflow: hidden;
+  
+  width: 900px;
+  height: 700px;
+  
+  left: 50%;
+  top: 50%;
+  
+  margin-left: -450px;
+  margin-top: -350px;
+  
+  padding: 40px 60px;
+  
+  box-sizing: border-box;
+  
+  border-radius: 10px;
+  
+  background: white url(images/colorbar.png) 0 600px repeat-x;
+
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);
+  border: 1px solid rgba(0, 0, 0, .2);
+  
+  -webkit-transition: -webkit-transform .3s;
+}
+
+/* Slide styles */
+
+article.biglogo {
+  background: white url(images/googleio-logo.png) 50% 50% no-repeat;
+  
+  background-size: 600px;
+}
+
+/* Slides */
+
+.slides > article {
+  display: none;
+}
+.slides > article.far-past {
+  display: block;
+  -webkit-transform: translate3d(-1900px, 0, 0);
+}
+.slides > article.past {
+  display: block;
+  -webkit-transform: translate3d(-950px, 0, 0);
+}
+.slides > article.current {
+  display: block;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides > article.next {
+  display: block;
+  -webkit-transform: translate3d(950px, 0, 0);
+}
+.slides > article.far-next {
+  display: block;
+  -webkit-transform: translate3d(1900px, 0, 0);
+}
+
+/* Styles for slides */
+
+.slides > article {
+  font-family: 'Open Sans', Arial, sans-serif;
+
+  color: rgb(102, 102, 102);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  
+  font-size: 30px;  
+  line-height: 36px;
+
+  letter-spacing: -1px;
+}
+
+h1 {
+  font-size: 60px;
+  line-height: 60px;
+  
+  padding: 0;
+  margin: 0;
+  margin-top: 200px;
+  padding-right: 40px;
+  
+  font-weight: 600;
+  
+  letter-spacing: -3px;
+  
+  color: rgb(51, 51, 51);
+}
+
+h2 {
+  font-size: 45px;
+  line-height: 45px;
+  
+  position: absolute;
+  bottom: 150px;
+  
+  padding: 0;
+  margin: 0;
+  padding-right: 40px;
+  
+  font-weight: 600;
+  
+  letter-spacing: -2px;
+  
+  color: rgb(51, 51, 51);
+}
+
+h3 {
+  font-size: 30px;
+  line-height: 36px;
+  
+  padding: 0;
+  margin: 0;
+  padding-right: 40px;
+
+  font-weight: 600;
+    
+  letter-spacing: -1px;
+  
+  color: rgb(51, 51, 51);
+}
+
+article.fill h3 {
+  background: rgba(255, 255, 255, .75);
+  padding-top: .2em;
+  padding-bottom: .3em;
+  margin-left: -60px;
+  padding-left: 60px;
+  margin-right: -60px;
+  padding-right: 60px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  
+  margin-top: 20px;
+}
+p:first-child {
+  margin-top: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  margin-top: 40px;
+  
+  margin-left: .75em;
+}
+ul:first-child {
+  margin-top: 0;
+}
+li {
+  padding: 0;
+  margin: 0;
+
+  margin-bottom: .5em;
+}
+li::before {
+  content: '·';
+  
+  width: .75em;
+  margin-left: -.75em;
+
+  position: absolute;
+}
+
+pre {
+  font-family: 'Droid Sans Mono', 'Courier New', monospace;
+  
+  font-size: 20px;
+  line-height: 28px;
+  padding: 5px 10px;
+  
+  margin-top: 40px;
+  margin-bottom: 40px;
+  
+  color: black;
+  background: rgb(240, 240, 240);
+  border: 1px solid rgb(224, 224, 224);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);  
+}
+
+code {
+  font-size: 95%;
+  font-family: 'Droid Sans Mono', 'Courier New', monospace;  
+  
+  color: black;
+}
+
+iframe {
+  width: 100%;
+  
+  height: 620px;
+
+  background: white;
+  border: 1px solid rgb(192, 192, 192);
+  margin: -1px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);    
+}
+
+h3 + iframe {
+  margin-top: 40px;
+  height: 540px;  
+}
+
+article.fill iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  
+  border: 0;
+  margin: 0;
+  
+  z-index: -1;
+}
+
+article.fill img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  
+  z-index: -1;
+}
+img.centered {
+  margin: 0 auto;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 40px;
+}
+th {  
+  font-weight: 600;
+  text-align: left;
+}
+td,
+th {
+  border: 1px solid rgb(224, 224, 224);
+  padding: 5px 10px;
+  vertical-align: top;
+}
+
+article.smaller p,
+article.smaller ul {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;  
+}
+article.smaller table {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;  
+}
+article.smaller pre {
+  font-size: 15px;
+  line-height: 20px;  
+}
+
+.blue {
+  color: rgb(0, 102, 204);
+}
+.yellow {
+  color: rgb(255, 211, 25);
+}
+.green {
+  color: rgb(0, 138, 53);
+}
+.red {
+  color: rgb(255, 0, 0);
+}
+.black {
+  color: black;
+}
+.white {
+  color: white;
+}
+b {
+  font-weight: 600;
+}
+
+a {
+  color: rgb(0, 102, 204);
+}
+a:visited {
+  color: rgba(0, 102, 204, .75);  
+}
+a:hover {
+  color: black;
+}
