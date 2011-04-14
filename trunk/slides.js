@@ -125,7 +125,7 @@ function buildNextItem() {
     return false;
   }
 
-  toBuild[0].className = toBuild[0].className.replace(' to-build', '');
+  toBuild[0].classList.remove('to-build', '');
 
   return true;
 }
@@ -183,8 +183,8 @@ function addGeneralStyle() {
   el.rel = 'stylesheet';
   el.type = 'text/css';
   el.href = PERMANENT_URL_PREFIX + 'styles.css';
-  
-  document.body.appendChild(el);    
+
+  document.body.appendChild(el);
 }
 
 function disableFramesForSlide(slide) {
@@ -231,26 +231,28 @@ function setupFrames() {
 }
 
 function makeBuildLists() {
-  var lists = document.querySelectorAll('.build');
-  for (var i = 0, list; list = lists[i]; i++) {
-    var childNodes = list.childNodes;
-    for (var j = 0, c; c = childNodes[j]; j++) {
-      c.className += ' to-build';
+  for (var i = curSlide, slide; slide = slideEls[i]; i++) {
+    var items = slide.querySelectorAll('.build > *');
+    for (var j = 0, item; item = items[j]; j++) {
+      if (item.classList) {
+        item.classList.add('to-build');
+      }
     }
   }
 }
 
 function handleDomLoaded() {
+  slideEls = document.querySelectorAll('section.slides > article');
+
   setupFrames();
   makeBuildLists();
-  slideEls = document.querySelectorAll('section.slides > article');
 
   addFontStyle();
   addGeneralStyle();
   addPrettify();
-  
+
   document.body.classList.add('loaded');
-  
+
   updateSlideClasses();
 
   document.body.addEventListener('keydown', handleBodyKeyDown, false);
@@ -258,7 +260,7 @@ function handleDomLoaded() {
 
 function initialize() {
   getCurSlideFromHash();
-  
+
   document.addEventListener('DOMContentLoaded', handleDomLoaded, false);
 }
 
