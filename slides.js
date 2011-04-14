@@ -8,6 +8,7 @@
 */
 
 var PERMANENT_URL_PREFIX = 'http://io-2011-slides.googlecode.com/svn/trunk/';
+var PERMANENT_URL_PREFIX = '../';
 
 var curSlide;
 
@@ -118,6 +119,18 @@ function updateSlideClasses() {
   updateHash();
 }
 
+function buildNextItem() {
+  var toBuild  = slideEls[curSlide].querySelectorAll('.to-build');
+
+  if (!toBuild.length) {
+    return false;
+  }
+
+  toBuild[0].className = toBuild[0].className.replace(' to-build', '');
+
+  return true;
+}
+
 function prevSlide() {
   if (curSlide > 0) {
     curSlide--;
@@ -127,9 +140,13 @@ function prevSlide() {
 }
 
 function nextSlide() {
+  if (buildNextItem()) {
+    return;
+  }
+
   if (curSlide < slideEls.length - 1) {
     curSlide++;
-  
+
     updateSlideClasses();
   }
 }
@@ -188,18 +205,29 @@ function enableFrame(frame) {
 }
 
 function setupFrames() {
-  var frames = document.getElementsByTagName('iframe');
+  var frames = document.querySelectorAll('iframe');
   for (var i = 0, frame; frame = frames[i]; i++) {
     frame._src = frame.src;
     disableFrame(frame);
   }
 }
 
+function makeBuildLists() {
+  var lists = document.querySelectorAll('.build');
+  for (var i = 0, list; list = lists[i]; i++) {
+    var childNodes = list.childNodes;
+    for (var j = 0, c; c = childNodes[j]; j++) {
+      c.className += ' to-build';
+    }
+  }
+}
+
 function handleDomLoaded() {
   setupFrames();
+  makeBuildLists();
   slideEls = document.querySelectorAll('section.slides > article');
-  
-  addFontStyle();  
+
+  addFontStyle();
   addGeneralStyle();
   
   document.body.classList.add('loaded');
