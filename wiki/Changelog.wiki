@@ -2,8 +2,9 @@
 
 
 
-= April 14 2011 =
+= Change log =
 
+April 14 2011
   * Added support for events - onslideenter/onslideleave
   * Added support for pageup/pagedown
   * Added support for list builds
