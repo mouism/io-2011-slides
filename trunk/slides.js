@@ -35,7 +35,7 @@ function handleBodyKeyDown(event) {
 
 function getCurSlideFromHash() {
   var slideNo = parseInt(location.hash.substr(1));
-  
+
   if (slideNo) {
     curSlide = slideNo - 1;
   } else {
@@ -46,6 +46,37 @@ function getCurSlideFromHash() {
 function updateHash() {
   location.replace('#' + (curSlide + 1));
 }
+
+function triggerSlideEvent(slide, slideNo) {
+  if (!slide) {
+    return;
+  }
+
+  var evt = document.createEvent('Event');
+  evt.initEvent('slidechange', true, true);
+  evt.slideNumber = slideNo + 1; // Make it readable
+  slideEls[curSlide].dispatchEvent(evt);
+
+  triggerEnterEvent(slide, slideNo);
+}
+
+function triggerEnterEvent(slide, slideNo) {
+  if (!slide) {
+    return;
+  }
+
+  var onEnter = slide.getAttribute('onslideenter');
+  eval(onEnter);
+};
+
+function triggerLeaveEvent(slide, slideNo) {
+  if (!slide) {
+    return;
+  }
+
+  var onLeave = slide.getAttribute('onslideleave');
+  eval(onLeave);
+};
 
 function updateSlideClass(el, className) {
   if (el) {    
@@ -68,7 +99,13 @@ function updateSlideClasses() {
   
   updateSlideClass(slideEls[curSlide - 2], 'far-past');
   updateSlideClass(slideEls[curSlide - 1], 'past');
+
+  triggerLeaveEvent(slideEls[curSlide - 1], curSlide - 1);
+
   updateSlideClass(slideEls[curSlide], 'current');
+
+  triggerSlideEvent(slideEls[curSlide], curSlide);
+
   updateSlideClass(slideEls[curSlide + 1], 'next');
   updateSlideClass(slideEls[curSlide + 2], 'far-next');
   
