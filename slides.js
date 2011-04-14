@@ -1,9 +1,9 @@
 /*
   Google I/O 2011 HTML slides template
 
-  Created by Luke Mahé (lukem@google.com) 
+  Created by Luke Mahé (lukem@google.com)
          and Marcin Wichary (mwichary@google.com).
- 
+
   URL: http://go/io-html-slides
 */
 
@@ -41,6 +41,9 @@ function getCurSlideFromHash() {
   } else {
     curSlide = 0;
   }
+
+  enableFramesForSlide(slideEls[curSlide]);
+  enableFramesForSlide(slideEls[curSlide + 1]);
 }
 
 function updateHash() {
@@ -111,9 +114,8 @@ function updateSlideClasses() {
   updateSlideClass(slideEls[curSlide + 1], 'next');
   updateSlideClass(slideEls[curSlide + 2], 'far-next');
 
-  disableFramesForSlide(slideEls[curSlide - 1]);
-  enableFramesForSlide(slideEls[curSlide]);
-  enableFramesForSlide(slideEls[curSlide + 1]);
+  disableFramesForSlide(slideEls[curSlide - 2]);
+  enableFramesForSlide(slideEls[curSlide + 2]);
 
   updateHash();
 }
