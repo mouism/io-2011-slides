@@ -363,3 +363,11 @@ a:visited {
 a:hover {
   color: black;
 }
+
+.build > * {
+  -webkit-transition: opacity 0.5s ease-in-out 0.2s;
+}
+
+.to-build {
+  opacity: 0;
+}
