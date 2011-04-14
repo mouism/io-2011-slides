@@ -55,7 +55,7 @@ function triggerSlideEvent(slide, slideNo) {
   var evt = document.createEvent('Event');
   evt.initEvent('slidechange', true, true);
   evt.slideNumber = slideNo + 1; // Make it readable
-  slideEls[curSlide].dispatchEvent(evt);
+  slideEls[slideNo].dispatchEvent(evt);
 
   triggerEnterEvent(slide, slideNo);
 }
@@ -66,7 +66,15 @@ function triggerEnterEvent(slide, slideNo) {
   }
 
   var onEnter = slide.getAttribute('onslideenter');
-  eval(onEnter);
+  if (onEnter) {
+    eval(onEnter);
+  }
+
+  var evt = document.createEvent('Event');
+  evt.initEvent('slideenter', true, true);
+  evt.slideNumber = slideNo + 1; // Make it readable
+
+  slide.dispatchEvent(evt);
 };
 
 function triggerLeaveEvent(slide, slideNo) {
@@ -75,7 +83,14 @@ function triggerLeaveEvent(slide, slideNo) {
   }
 
   var onLeave = slide.getAttribute('onslideleave');
-  eval(onLeave);
+  if (onLeave) {
+    eval(onLeave);
+  }
+
+  var evt = document.createEvent('Event');
+  evt.initEvent('slideleave', true, true);
+  evt.slideNumber = slideNo + 1; // Make it readable
+  slideEls[slideNo].dispatchEvent(evt);
 };
 
 function updateSlideClass(el, className) {
