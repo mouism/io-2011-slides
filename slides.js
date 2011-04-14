@@ -42,8 +42,8 @@ function getCurSlideFromHash() {
     curSlide = 0;
   }
 
-  enableFramesForSlide(slideEls[curSlide]);
-  enableFramesForSlide(slideEls[curSlide + 1]);
+  //enableFramesForSlide(slideEls[curSlide]);
+  //enableFramesForSlide(slideEls[curSlide + 1]);
 }
 
 function updateHash() {
