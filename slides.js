@@ -150,6 +150,24 @@ function nextSlide() {
   }
 }
 
+function addPrettify() {
+  var el = document.createElement('link');
+  el.rel = 'stylesheet';
+  el.type = 'text/css';
+  el.href = PERMANENT_URL_PREFIX + 'prettify.css';
+  
+  document.body.appendChild(el); 
+
+  var el = document.createElement('script');
+  el.type = 'text/javascript';
+  el.src = PERMANENT_URL_PREFIX + 'prettify.js';
+  el.onload = function() {
+    prettyPrint();
+  }
+  
+  document.body.appendChild(el); 
+}
+
 function addFontStyle() {
   var el = document.createElement('link');
   el.rel = 'stylesheet';
@@ -228,6 +246,7 @@ function handleDomLoaded() {
 
   addFontStyle();
   addGeneralStyle();
+  addPrettify();
   
   document.body.classList.add('loaded');
   
