@@ -41,9 +41,6 @@ function getCurSlideFromHash() {
   } else {
     curSlide = 0;
   }
-
-  //enableFramesForSlide(slideEls[curSlide]);
-  //enableFramesForSlide(slideEls[curSlide + 1]);
 }
 
 function updateHash() {
@@ -256,6 +253,9 @@ function handleDomLoaded() {
   document.body.classList.add('loaded');
 
   updateSlideClasses();
+
+  enableFramesForSlide(slideEls[curSlide]);
+  enableFramesForSlide(slideEls[curSlide + 1]);
 
   document.body.addEventListener('keydown', handleBodyKeyDown, false);
 }
