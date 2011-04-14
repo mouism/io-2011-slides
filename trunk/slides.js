@@ -112,6 +112,7 @@ function updateSlideClasses() {
   updateSlideClass(slideEls[curSlide + 2], 'far-next');
 
   disableFramesForSlide(slideEls[curSlide - 2]);
+  enableFramesForSlide(slideEls[curSlide - 1]);
   enableFramesForSlide(slideEls[curSlide + 2]);
 
   updateHash();
