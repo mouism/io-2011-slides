@@ -47,19 +47,6 @@ function updateHash() {
   location.replace('#' + (curSlide + 1));
 }
 
-function triggerSlideEvent(slide, slideNo) {
-  if (!slide) {
-    return;
-  }
-
-  var evt = document.createEvent('Event');
-  evt.initEvent('slidechange', true, true);
-  evt.slideNumber = slideNo + 1; // Make it readable
-  slideEls[slideNo].dispatchEvent(evt);
-
-  triggerEnterEvent(slide, slideNo);
-}
-
 function triggerEnterEvent(slide, slideNo) {
   if (!slide) {
     return;
@@ -67,7 +54,7 @@ function triggerEnterEvent(slide, slideNo) {
 
   var onEnter = slide.getAttribute('onslideenter');
   if (onEnter) {
-    eval(onEnter);
+    new Function(onEnter).call(slide);
   }
 
   var evt = document.createEvent('Event');
@@ -84,7 +71,7 @@ function triggerLeaveEvent(slide, slideNo) {
 
   var onLeave = slide.getAttribute('onslideleave');
   if (onLeave) {
-    eval(onLeave);
+    new Function(onLeave).call(slide);
   }
 
   var evt = document.createEvent('Event');
@@ -119,11 +106,15 @@ function updateSlideClasses() {
 
   updateSlideClass(slideEls[curSlide], 'current');
 
-  triggerSlideEvent(slideEls[curSlide], curSlide);
+  triggerEnterEvent(slideEls[curSlide], curSlide);
 
   updateSlideClass(slideEls[curSlide + 1], 'next');
   updateSlideClass(slideEls[curSlide + 2], 'far-next');
-  
+
+  disableFramesForSlide(slideEls[curSlide - 1]);
+  enableFramesForSlide(slideEls[curSlide]);
+  enableFramesForSlide(slideEls[curSlide + 1]);
+
   updateHash();
 }
 
@@ -161,7 +152,51 @@ function addGeneralStyle() {
   document.body.appendChild(el);    
 }
 
+function disableFramesForSlide(slide) {
+  if (!slide) {
+    return;
+  }
+
+  var frames = slide.getElementsByTagName('iframe');
+  for (var i = 0, frame; frame = frames[i]; i++) {
+    disableFrame(frame);
+  }
+
+}
+
+function enableFramesForSlide(slide) {
+  if (!slide) {
+    return;
+  }
+
+  var frames = slide.getElementsByTagName('iframe');
+  for (var i = 0, frame; frame = frames[i]; i++) {
+    enableFrame(frame);
+  }
+}
+
+function disableFrame(frame) {
+  frame.src = 'about:blank';
+}
+
+function enableFrame(frame) {
+  var src = frame._src;
+
+  if (frame.src != src && src != 'about:blank') {
+    frame.src = src;
+  }
+}
+
+function setupFrames() {
+  var frames = document.getElementsByTagName('iframe');
+  for (var i = 0, frame; frame = frames[i]; i++) {
+    frame._src = frame.src;
+    disableFrame(frame);
+  }
+}
+
 function handleDomLoaded() {
+  setupFrames();
   slideEls = document.querySelectorAll('section.slides > article');
   
   addFontStyle();  
