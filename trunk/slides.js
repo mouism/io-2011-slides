@@ -111,7 +111,11 @@ function updateSlideClasses() {
   updateSlideClass(slideEls[curSlide + 1], 'next');
   updateSlideClass(slideEls[curSlide + 2], 'far-next');
 
-  disableFramesForSlide(slideEls[curSlide - 2]);
+  window.setTimeout(function() {
+    // Hide after the slide
+    disableFramesForSlide(slideEls[curSlide - 2]);
+  }, 301);
+
   enableFramesForSlide(slideEls[curSlide - 1]);
   enableFramesForSlide(slideEls[curSlide + 2]);
 
@@ -238,6 +242,7 @@ function makeBuildLists() {
         item.classList.add('to-build');
       }
     }
+
   }
 }
 
@@ -255,6 +260,7 @@ function handleDomLoaded() {
 
   updateSlideClasses();
 
+  enableFramesForSlide(slideEls[curSlide + 2]);
   enableFramesForSlide(slideEls[curSlide]);
   enableFramesForSlide(slideEls[curSlide + 1]);
 
