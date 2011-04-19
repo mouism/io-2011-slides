@@ -155,22 +155,20 @@ function nextSlide() {
 }
 
 function addPrettify() {
-  // Add back when we are happy with the styles
-  /*var el = document.createElement('link');
-  el.rel = 'stylesheet';
-  el.type = 'text/css';
-  el.href = PERMANENT_URL_PREFIX + 'prettify.css';
-
-  document.body.appendChild(el);
-
+  var els = document.querySelectorAll('pre');
+  for (var i = 0, el; el = els[i]; i++) {
+    if (!el.classList.contains('noprettyprint')) {
+      el.classList.add('prettyprint');
+    }
+  }
+  
   var el = document.createElement('script');
   el.type = 'text/javascript';
   el.src = PERMANENT_URL_PREFIX + 'prettify.js';
   el.onload = function() {
     prettyPrint();
   }
-
-  document.body.appendChild(el); */
+  document.body.appendChild(el);
 }
 
 function addFontStyle() {
@@ -242,7 +240,6 @@ function makeBuildLists() {
         item.classList.add('to-build');
       }
     }
-
   }
 }
 
