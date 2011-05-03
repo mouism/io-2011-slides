@@ -551,6 +551,7 @@ article.smaller pre {
 }
 article.smaller q {
   font-size: 40px;
+  line-height: 48px;
 }
 article.smaller q::before,
 article.smaller q::after {
