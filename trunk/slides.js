@@ -560,8 +560,7 @@ function addGeneralStyle() {
   
   var el = document.createElement('meta');
   el.name = 'viewport';
-  //el.content = 'width=1100,height=750,target-densitydpi=device-dpi';
-  el.content = 'width=1100';
+  el.content = 'width=1100,height=750';
   document.querySelector('head').appendChild(el);
   
   var el = document.createElement('meta');
