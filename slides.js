@@ -283,6 +283,50 @@ function triggerLeaveEvent(no) {
   el.dispatchEvent(evt);
 };
 
+/* Touch events */
+
+function handleTouchStart(event) {
+  if (event.touches.length == 1) {
+    touchDX = 0;
+    touchDY = 0;
+
+    touchStartX = event.touches[0].pageX;
+    touchStartY = event.touches[0].pageY;
+
+    document.body.addEventListener('touchmove', handleTouchMove, true);
+    document.body.addEventListener('touchend', handleTouchEnd, true);
+  }
+};
+
+function handleTouchMove(event) {
+  if (event.touches.length > 1) {
+    cancelTouch();
+  } else {
+    touchDX = event.touches[0].pageX - touchStartX;
+    touchDY = event.touches[0].pageY - touchStartY;
+  }
+};
+
+function handleTouchEnd(event) {
+  var dx = Math.abs(touchDX);
+  var dy = Math.abs(touchDY);
+
+  if ((dx > PM_TOUCH_SENSITIVITY) && (dy < (dx * 2 / 3))) {
+    if (touchDX > 0) {
+      prevSlide();
+    } else {
+      nextSlide();
+    }
+  }
+  
+  cancelTouch();
+};
+
+function cancelTouch() {
+  document.body.removeEventListener('touchmove', handleTouchMove, true);
+  document.body.removeEventListener('touchend', handleTouchEnd, true);  
+};
+
 /* Preloading frames */
 
 function disableSlideFrames(no) {
@@ -332,60 +376,6 @@ function setupFrames() {
   enableSlideFrames(curSlide + 1);
   enableSlideFrames(curSlide + 2);  
 };
-
-function handleTouchStart(event) {
-  document.title = 'start';
-  
-  if (event.touches.length == 1) {
-    touchDX = 0;
-    touchDY = 0;
-
-    touchStartX = event.touches[0].pageX;
-    touchStartY = event.touches[0].pageY;
-
-    document.body.addEventListener('touchmove', handleTouchMove, true);
-    document.body.addEventListener('touchend', handleTouchEnd, true);
-  }
-}
-
-function handleTouchMove(event) {
-  document.title = 'move';  
-
-  if (event.touches.length > 1) {
-    cancelTouch();
-  } else {
-    touchDX = event.touches[0].pageX - touchStartX;
-    touchDY = event.touches[0].pageY - touchStartY;
-  }
-  //event.preventDefault();
-  //event.stopPropagation();
-}
-
-function handleTouchEnd(event) {
-  var dx = Math.abs(touchDX);
-  var dy = Math.abs(touchDY);
-
-  document.title = 'end ' + dx + ' ' + dy;  
-
-  if ((dx > PM_TOUCH_SENSITIVITY) && (dy < (dx * 2 / 3))) {
-    // Horizontal swipe
-    if (touchDX > 0) {
-      prevSlide();
-    } else {
-      nextSlide();
-    }
-  }
-  
-  cancelTouch();
-   
-  //event.preventDefault();
-  //event.stopPropagation();
-}
-
-function cancelTouch() {
-  document.body.removeEventListener('touchmove', handleTouchMove, true);
-  document.body.removeEventListener('touchend', handleTouchEnd, true);  
-}
 
 function setupInteraction() {
   /* Clicking and tapping */
