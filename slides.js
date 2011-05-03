@@ -345,9 +345,6 @@ function handleTouchStart(event) {
 
     document.body.addEventListener('touchmove', handleTouchMove, true);
     document.body.addEventListener('touchend', handleTouchEnd, true);
-
-    event.preventDefault();
-    event.stopPropagation();
   }
 }
 
@@ -365,10 +362,10 @@ function handleTouchMove(event) {
 }
 
 function handleTouchEnd(event) {
-  document.title = 'end';  
-
   var dx = Math.abs(touchDX);
   var dy = Math.abs(touchDY);
+
+  document.title = 'end ' + dx + ' ' + dy;  
 
   if ((dx > PM_TOUCH_SENSITIVITY) && (dy < (dx * 2 / 3))) {
     // Horizontal swipe
