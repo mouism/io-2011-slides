@@ -508,7 +508,7 @@ function addGeneralStyle() {
   
   var el = document.createElement('meta');
   el.name = 'viewport';
-  el.content = 'width=500';
+  el.content = 'width=1100';
   document.querySelector('head').appendChild(el);
 };
 
