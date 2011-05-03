@@ -13,6 +13,8 @@ var PERMANENT_URL_PREFIX = 'http://io-2011-slides.googlecode.com/svn/trunk/';
 
 var SLIDE_CLASSES = ['far-past', 'past', 'current', 'next', 'far-next'];
 
+var PM_TOUCH_SENSITIVITY = 15;
+
 var curSlide;
 
 /* ---------------------------------------------------------------------- */
@@ -331,16 +333,59 @@ function setupFrames() {
   enableSlideFrames(curSlide + 2);  
 };
 
-function handleGestureStart(event) {
-  document.title = 's' + event.rotation + ' ' + event.scale;  
+function handleTouchStart(event) {
+  document.title = 'start';
+  
+  if (event.touches.length == 1) {
+    touchDX = 0;
+    touchDY = 0;
+
+    touchStartX = event.touches[0].pageX;
+    touchStartY = event.touches[0].pageY;
+
+    document.body.addEventListener('touchmove', handleTouchMove, true);
+    document.body.addEventListener('touchend', handleTouchEnd, true);
+
+    event.preventDefault();
+    event.stopPropagation();
+  }
 }
 
-function handleGestureChange(event) {
-  document.title = 'c' + event.rotation + ' ' + event.scale;  
+function handleTouchMove(event) {
+  document.title = 'move';  
+
+  if (event.touches.length > 1) {
+    cancelTouch();
+  } else {
+    touchDX = event.touches[0].pageX - touchStartX;
+    touchDY = event.touches[0].pageY - touchStartY;
+  }
+  //event.preventDefault();
+  //event.stopPropagation();
 }
 
-function handleGestureEnd(event) {
-  document.title = 'e' + event.rotation + ' ' + event.scale;
+function handleTouchEnd(event) {
+  document.title = 'end';  
+
+  var dx = Math.abs(touchDX);
+  var dy = Math.abs(touchDY);
+
+  if ((dx > PM_TOUCH_SENSITIVITY) && (dy < (dx * 2 / 3))) {
+    // Horizontal swipe
+    if (pacMan.touchDX > 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
+   
+  //event.preventDefault();
+  //event.stopPropagation();
+}
+
+function cancelTouch() {
+  document.body.removeEventListener('touchmove', handleTouchMove, true);
+  document.body.removeEventListener('touchend', handleTouchEnd, true);  
 }
 
 function setupInteraction() {
@@ -360,9 +405,7 @@ function setupInteraction() {
   
   /* Swiping */
   
-  document.querySelector('section.slides').addEventListener('gesturestart', handleGestureStart, false);
-  document.querySelector('section.slides').addEventListener('gesturechange', handleGestureChange, false);
-  document.querySelector('section.slides').addEventListener('gestureend', handleGestureEnd, false);
+  document.body.addEventListener('touchstart', handleTouchStart, false);
 }
 
 /* ChromeVox support */
