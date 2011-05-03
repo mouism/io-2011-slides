@@ -369,7 +369,7 @@ function handleTouchEnd(event) {
 
   if ((dx > PM_TOUCH_SENSITIVITY) && (dy < (dx * 2 / 3))) {
     // Horizontal swipe
-    if (pacMan.touchDX > 0) {
+    if (touchDX > 0) {
       nextSlide();
     } else {
       prevSlide();
