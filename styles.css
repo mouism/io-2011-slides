@@ -22,6 +22,7 @@ body {
   display: block !important;
 
   height: 100%;
+  min-height: 740px;
   
   overflow-x: hidden;
   overflow-y: auto;
@@ -105,6 +106,36 @@ body {
 .slides.layout-widescreen > article:not(.nobackground):not(.biglogo),
 .slides.layout-faux-widescreen > article:not(.nobackground):not(.biglogo) {
   background-position-x: 0, 840px;
+}
+
+.slide-area {
+  z-index: 1000;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 700px;  
+
+  left: 50%;
+  top: 50%;
+
+  cursor: pointer;  
+  margin-top: -350px;  
+}
+#prev-slide-area {
+  margin-left: -550px;
+}
+#next-slide-area {
+  margin-left: 400px;
+}
+.slides.layout-widescreen #prev-slide-area,
+.slides.layout-faux-widescreen #prev-slide-area {
+  margin-left: -650px;
+}
+.slides.layout-widescreen #next-slide-area,
+.slides.layout-faux-widescreen #next-slide-area {
+  margin-left: 500px;
 }
 
 /* Slide styles */
