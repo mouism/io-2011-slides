@@ -332,15 +332,15 @@ function setupFrames() {
 };
 
 function handleGestureStart(event) {
-  
+  document.title = 's' + event.rotation + ' ' + event.scale;  
 }
 
 function handleGestureChange(event) {
-  
+  document.title = 'c' + event.rotation + ' ' + event.scale;  
 }
 
 function handleGestureEnd(event) {
-  document.title = event.rotation + ' ' + event.scale;
+  document.title = 'e' + event.rotation + ' ' + event.scale;
 }
 
 function setupInteraction() {
