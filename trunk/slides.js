@@ -331,6 +331,22 @@ function setupFrames() {
   enableSlideFrames(curSlide + 2);  
 };
 
+function setupInteraction() {
+  var el = document.createElement('div');
+  el.className = 'slide-area';
+  el.id = 'prev-slide-area';  
+  el.addEventListener('click', prevSlide, false);
+  el.addEventListener('touchstart', prevSlide, false);
+  document.querySelector('section.slides').appendChild(el);
+
+  var el = document.createElement('div');
+  el.className = 'slide-area';
+  el.id = 'next-slide-area';  
+  el.addEventListener('click', nextSlide, false);
+  el.addEventListener('touchstart', nextSlide, false);
+  document.querySelector('section.slides').appendChild(el);  
+}
+
 /* ChromeVox support */
 
 function isChromeVoxActive() {
@@ -515,6 +531,7 @@ function handleDomLoaded() {
 
   updateSlides();
 
+  setupInteraction();
   setupFrames();
   makeBuildLists();
 
