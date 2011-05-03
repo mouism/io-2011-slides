@@ -331,7 +331,21 @@ function setupFrames() {
   enableSlideFrames(curSlide + 2);  
 };
 
+function handleGestureStart(event) {
+  
+}
+
+function handleGestureChange(event) {
+  
+}
+
+function handleGestureEnd(event) {
+  document.title = event.rotation + ' ' + event.scale;
+}
+
 function setupInteraction() {
+  /* Clicking and tapping */
+  
   var el = document.createElement('div');
   el.className = 'slide-area';
   el.id = 'prev-slide-area';  
@@ -343,6 +357,12 @@ function setupInteraction() {
   el.id = 'next-slide-area';  
   el.addEventListener('click', nextSlide, false);
   document.querySelector('section.slides').appendChild(el);  
+  
+  /* Swiping */
+  
+  document.body.addEventListener('gesturestart', handleGestureStart, false);
+  document.body.addEventListener('gesturechange', handleGestureChange, false);
+  document.body.addEventListener('gestureend', handleGestureEnd, false);
 }
 
 /* ChromeVox support */
