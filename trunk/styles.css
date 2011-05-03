@@ -489,7 +489,7 @@ th {
   line-height: 18px;
 }
 
-quot {
+q {
   display: block;
   font-size: 60px;
   line-height: 72px;
@@ -499,7 +499,7 @@ quot {
   margin-top: 100px;
   margin-right: 150px;    
 }
-quot::before {
+q::before {
   content: '“';
   
   position: absolute;
@@ -511,7 +511,7 @@ quot::before {
   font-size: 90px;
   color: rgb(192, 192, 192);
 }
-quot::after {
+q::after {
   content: '”';
 
   position: absolute;  
@@ -548,6 +548,13 @@ article.smaller pre {
   font-size: 15px;
   line-height: 20px;
   letter-spacing: 0;
+}
+article.smaller q {
+  font-size: 40px;
+}
+article.smaller q::before,
+article.smaller q::after {
+  font-size: 60px;
 }
 
 /* Builds */
