@@ -375,6 +375,8 @@ function handleTouchEnd(event) {
       prevSlide();
     }
   }
+  
+  cancelTouch();
    
   //event.preventDefault();
   //event.stopPropagation();
