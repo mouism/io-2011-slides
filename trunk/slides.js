@@ -360,9 +360,9 @@ function setupInteraction() {
   
   /* Swiping */
   
-  document.body.addEventListener('gesturestart', handleGestureStart, false);
-  document.body.addEventListener('gesturechange', handleGestureChange, false);
-  document.body.addEventListener('gestureend', handleGestureEnd, false);
+  document.querySelector('section.slides').addEventListener('gesturestart', handleGestureStart, false);
+  document.querySelector('section.slides').addEventListener('gesturechange', handleGestureChange, false);
+  document.querySelector('section.slides').addEventListener('gestureend', handleGestureEnd, false);
 }
 
 /* ChromeVox support */
