@@ -504,8 +504,12 @@ function addGeneralStyle() {
   el.rel = 'stylesheet';
   el.type = 'text/css';
   el.href = PERMANENT_URL_PREFIX + 'styles.css';
-
   document.body.appendChild(el);
+  
+  var el = document.createElement('meta');
+  el.name = 'viewport';
+  el.content = 'width=500';
+  document.querySelector('head').appendChild(el);
 };
 
 function makeBuildLists() {
