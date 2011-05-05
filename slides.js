@@ -198,8 +198,9 @@ function updateSlides() {
     // Hide after the slide
     disableSlideFrames(curSlide - 2);
   }, 301);
-
+  
   enableSlideFrames(curSlide - 1);
+  enableSlideFrames(curSlide + 1);
   enableSlideFrames(curSlide + 2);
   
   if (isChromeVoxActive()) {
@@ -359,8 +360,7 @@ function disableFrame(frame) {
 
 function enableFrame(frame) {
   var src = frame._src;
-
-  if (frame.src != src && src != 'about:blank') {
+  if (src && frame.src != src) {
     frame.src = src;
   }
 };
@@ -371,10 +371,11 @@ function setupFrames() {
     frame._src = frame.src;
     disableFrame(frame);
   }
-  
+
+  enableSlideFrames(curSlide - 1);
   enableSlideFrames(curSlide);
   enableSlideFrames(curSlide + 1);
-  enableSlideFrames(curSlide + 2);  
+  enableSlideFrames(curSlide + 2);
 };
 
 function setupInteraction() {
