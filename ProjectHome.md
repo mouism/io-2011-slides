@@ -1,0 +1,1 @@
+Obsoleted by http://code.google.com/p/html5slides

@@ -1,0 +1,9 @@
+# Change log #
+
+April 14 2011
+  * Added support for events - onslideenter/onslideleave
+  * Added support for pageup/pagedown
+  * Added support for list builds
+  * Added support for iframe lazy loading
+  * Added support for pretty print code - Not enabled yet.
+  * Improved performance bug - removed box shadow inset style from 'article'
